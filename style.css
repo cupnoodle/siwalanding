@@ -3,16 +3,12 @@ body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { m
 
 /** Basic styling */
 body { 
-  font: 300 21px sofia-pro, sans-serif, "Apple Color Emoji"; 
+  font-family: sofia-pro, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 21px;
   color: #333333; 
   background-color: #f9f9f9; 
-  -webkit-text-size-adjust: 100%; 
-  -webkit-font-feature-settings: "kern" 1; 
-  -moz-font-feature-settings: "kern" 1; 
-  -o-font-feature-settings: "kern" 1; 
-  font-feature-settings: "kern" 1; 
-  font-kerning: normal; 
-  line-height: 1.4;
 }
 
 @media screen and (max-width: 500px) {
