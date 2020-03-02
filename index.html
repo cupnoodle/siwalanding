@@ -26,10 +26,132 @@
 <meta name="twitter:data1" content="Axel Kee" />
 
 
-<link rel="stylesheet" href="https://use.typekit.net/jqt1vqf.css">
+<link rel="stylesheet" href="https://use.typekit.net/otw1znl.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p>Test test</p>
+  <div class="container">
+    
+    <h1>“I have spent hours but all I get is <span class="red">invalid_client</span> error, I don’t even know what I did wrong!”</h1>
+    <br>
+    <img srcset="
+      error_client.png 1x, 
+      error_client@2x.png 2x
+    " alt="invalid client error">
+    <br>
+    <p>
+      You have followed a tutorial on how to implement Sign in with Apple step by step, but you are stuck at the dreaded “invalid_client” error every time you try to validate the authorization code with /auth/token.
+      <br><br>
+      You checked your client_id, client_secret and even the redirect_uri parameters, all of them seem correct, then you try to swap client_id with the app bundle ID, web services ID, changing the headers used to generate the client secret JWT… hours has passed and despite all the trial and error, you are still getting the same “invalid_client” error! 🤬
+      <br><br>
+      The error message “invalid_client” isn’t particularly helpful as <strong>it doesn’t say which part of your code is wrong</strong>, could it be your client_id? client_secret? or could it be the authorization code that you’ve gotten from the app isn’t formatted properly? You wished Apple would provide a more helpful error message on solving the issue.
+      <br><br>
+      Apple require us to implement Sign in with Apple <a href="https://developer.apple.com/news/?id=09122019b">before April 2020</a>, yet the documentation is severely lacking, the obscure error message certainly doesn’t help. You start to worry what if you couldn’t implement Sign in with Apple before the deadline, and Apple rejected your app upcoming update, causing the delay of some fixes/updates to your app, which makes your users and your boss unhappy 😣.
+    </p>
+    <br>
+    <br>
+
+    <h2>“I have scoured all the documentation at length and have still not gotten anywhere.”</h2>
+    <br>
+    <p>
+    After spending countless hours battling the token validating issue, you have finally managed to retrieve the token! yay! But now you are stuck again, as there isn’t even a word in Apple documentation on how to handle subsequent REST API call after user has signed in successfully! As the token returned from validating authorization code is just valid for 10 minutes, and Apple only allow <a href="https://developer.apple.com/documentation/signinwithapplerestapi/verifying_a_user">refreshing token once a day</a> (more than that will result in throttling), how should we handle subsequent REST API call to the backend using token?
+    </p>
+    <br>
+    <p>
+    There’s an endpoint to get Apple public key, but how do I even use this hash to verify signature?! This certainly doesn’t look like a public key file format (eg: —–BEGIN PUBLIC KEY—– xxxxxx —–END PUBLIC KEY—– ) :
+    </p>
+    <br>
+<!-- please copy paste this from Jekyll output lol -->    
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"kty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"kid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AIDOPK1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sig"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RS256"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"n"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lxrwmuYSAsTfn-lUu4goZSXBD9ackM9OJuwUVQHmbZo6GW4Fu_auUdN5zI7Y1dEDfgt7m7QXWbHuMD01HLnD4eRtY-RNwCWdjNfEaY_esUPY3OVMrNDI15Ns13xspWS3q-13kdGv9jHI28P87RvMpjz_JCpQ5IM44oSyRnYtVJO-320SB8E2Bw92pmrenbp67KRUzTEVfGU4-obP5RZ09OxvCr1io4KJvEOjDJuuoClF66AT72WymtoMdwzUmhINjR0XSqK6H0MdWsjw7ysyd_JhmqX5CAaT9Pgi0J8lU_pcl215oANqjy7Ob-VMhug9eGyxAWVfu_1u6QJKePlE-w"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"e"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AQAB"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+    <br>
+    <p>Enough complain about Apple, let’s pause a moment and imagine....</p>
+    <br>
+    <br>
+
+    <h2>What if you could implement Sign in with Apple <span class="green">within a day</span>, submit the update to App Store confidently and continue on with your features / bug fixes?</h2>
+    <br>
+    <p>Wouldn’t it be nice if there’s a <strong>straightforward, step-by-step guide which you can follow</strong> to implement Sign in with Apple? From generating public key, validate authorization code, parsing identityToken to handling sign out?</p>
+
+    <br>
+    <p>You could implement Sign in with Apple <strong>within a day</strong>, and continue working on <strong>features or bug fixes that matters</strong>, which make your users happier (and also your boss).</p>
+    <br>
+    <br>
+
+    <h2>Learn the workings of JWT (JSON Web Token) and JWK (JSON Web Key)</h2>
+    <br>
+    <p>
+      Most of the frustration arise when implementing Sign in with Apple is because we haven’t deal with JSON Web Token before, and generating a JSON Web Token (JWT) for the <strong>client_secret</strong> can be a confusing step especially Apple is using a quirky algorithm named “RS256” elliptic curve.
+    </p>
+    <br>
+    <p>
+      IdentityToken retrieved from Apple’s API is also in JWT format, which contains an unique identifier for the user in the <strong>sub</strong> key :
+    </p>
+    <br>
+<!-- please copy paste this from Jekyll output lol -->
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"iss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://appleid.apple.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es.fluffy.AppleLogin"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578850937</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578850337</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001802.ba20d2adb5954ff0ace4972268a21303.1014"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"c_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JXNEyqNeiUwJ5_tNjYZkLg"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uikyccaycc@privaterelay.appleid.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"is_private_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578850337</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+    <br>
+    <p>The value of <strong>sub</strong>, <em>001802.ba20d2adb5954ff0ace4972268a21303.1014</em> is the unique user ID (which correspond to an Apple ID) for your app.</p>
+    <br>
+    <br>
+
+    <h2>Follow a step by step guide with code sample on each step to implement Sign in with Apple, with <span class="green">practical SIWA guide book</span></h2>
+    <br>
+    <p>Sign in with Apple flow is comprised of several steps:</p>
+    <br>
+    <p><strong>Prerequisite steps :</strong></p>
+    <ol>
+      <li>Backend Generate a RSA public key file from Apple public key API /auth/keys and store it in the backend</li>
+      <li>Download AuthKey (private key) generated from Apple developer portal for Sign In With Apple</li>
+      <li>Backend generate use the AuthKey to generate a JWT which will be used as “client_secret” parameter during token validation</li>
+    </ol>
+    <br>
+    <p><strong>SIWA steps for mobile app :</strong></p>
+    <ol>
+      <li>Getting authorization code (as string) from iOS app ASAuthorizationController, and send this to the backend</li>
+      <li>The backend server send this authorization code to Apple’s server endpoint /auth/token, upon success validation, will return access_token, refresh_token and id token</li>
+      <li>Decode the id token JWT to extract user data such as the unique identifier, email and name (if user opt in to reveal these data)</li>
+      <li>Use the unique identifier / email / name info to create a user, or if an user already exist, attach the unique identifier to it</li>
+      <li>Optionally, generate your own set of access_token / refresh_token on the backend and send it back to mobile app client, as Apple throttle token refresh to once per day per user, and the access token retrieved earlier is only valid for a short period of time.</li>
+      <li>The mobile client use the backend generated access_token for subsequent API calls to backend</li>
+      <li>User sign out or revoke SIWA permission from the Settings app, your app detect this and log user out</li>
+    </ol>
+    <br>
+    <p><strong>SIWA steps for website :</strong></p>
+    <ol>
+      <li>Redirect user to Apple OAuth page, user login with their Apple ID there</li>
+      <li>Apple will then send back a POST request with the user data to your server (redirect_uri)</li>
+    </ol>
+    <br><Br>
+    <p>The <strong class="green">practical SIWA guide book</strong> will explain each of these steps with accompanying code sample (iOS in Swift, backend in Ruby/Sinatra). The client_secret JWT generation part will have <strong>sample code using PHP, Python, Ruby and Java.</strong></p>
+    <br><br>
+
+    <h2>Get notified when the book is complete and get <span class="green">early bird discounts!</span></h2>
+    <br>
+    <p>The book is still in progress, sign up to get notified when it is finished and get early bird discounts!</p>
+  </div>
 </body>
 </html>
