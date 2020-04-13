@@ -32,21 +32,29 @@
 <body>
   <div class="container">
     
-    <h1>“I have spent hours but all I get is <span class="red">invalid_client</span> error, I don’t even know what I did wrong!”</h1>
+    <h1>“I am afraid that I might not be able to implement Sign in with Apple before the deadline, and get rejected”</h1>
     <br>
-    <img srcset="
-      error_client.png 1x, 
-      error_client@2x.png 2x
-    " alt="invalid client error">
+    <figure>
+      <img srcset="
+        ohno.png 1x, 
+        ohno@2x.png 2x
+      " alt="rejected">
+      <figcaption>I have gotten this email from Apple on one of the app I am working on, hopefully you won't get this 😅.</figcaption>
+    </figure>
     <br><br>
+    <!-- the obscure error message certainly doesn’t help -->
+    <p>
+      Apple require us to implement Sign in with Apple <a href="https://developer.apple.com/sign-in-with-apple/get-started/?cid=siwa-e-en-0008"> latest by 30th April 2020 </a> for new app and <strong>June 2020 for existing app updates</strong>. And yet the documentation is severely lacking, what should we do after getting user data from Sign in with Apple on iOS side? What does the error message like invalid_client even mean? You start to worry what if you couldn’t implement Sign in with Apple before the deadline, and Apple rejected your app upcoming update, causing the delay of some fixes/updates to your app, which makes <strong>your users and your boss unhappy</strong> 😣.
+    </p>
+    <br><br>
+    <h2>“I have wasted so much time trying to solve the error, the error message isn't even helpful!”</h2>
+    <br>
     <p>
       You have followed a tutorial on how to implement Sign in with Apple step by step, but you are stuck at the dreaded “invalid_client” error every time you try to validate the authorization code with /auth/token.
       <br><br>
       You checked your client_id, client_secret and even the redirect_uri parameters, all of them seem correct, then you try to swap client_id with the app bundle ID, web services ID, changing the headers used to generate the client secret JWT… hours has passed and despite all the trial and error, you are still getting the same “invalid_client” error! 🤬
       <br><br>
       The error message “invalid_client” isn’t particularly helpful as <strong>it doesn’t say which part of your code is wrong</strong>, could it be your client_id? client_secret? or could it be the authorization code that you’ve gotten from the app isn’t formatted properly? You wished Apple would provide a more helpful error message on solving the issue.
-      <br><br>
-      Apple require us to implement Sign in with Apple <a href="https://developer.apple.com/news/?id=09122019b">before April 2020</a>, yet the documentation is severely lacking, the obscure error message certainly doesn’t help. You start to worry what if you couldn’t implement Sign in with Apple before the deadline, and Apple rejected your app upcoming update, causing the delay of some fixes/updates to your app, which makes your users and your boss unhappy 😣.
     </p>
     <br>
     <br>
@@ -80,9 +88,9 @@
     <br>
     <br>
 
-    <h2>What if you could implement Sign in with Apple <span class="green">within a day</span>, submit the update to App Store confidently and continue on with your features / bug fixes?</h2>
+    <h2>What if you could implement Sign in with Apple <span class="green">within a day</span>, submit the app update to App Store confidently and continue on with your feature implementations / bug fixes?</h2>
     <br>
-    <p>Wouldn’t it be nice if there’s a <strong>straightforward, step-by-step guide which you can follow</strong> to implement Sign in with Apple? From generating public key, validate authorization code, parsing identityToken to handling sign out?</p>
+    <p>Wouldn’t it be nice if there’s a <strong>straightforward, step-by-step guide which you can follow</strong> to implement Sign in with Apple? From generating public key, validate authorization code, validating and parsing identityToken to subsequent REST API calls between your iOS app to your server?</p>
 
     <br>
     <p>You could implement Sign in with Apple <strong>within a day</strong>, and continue working on <strong>features or bug fixes that matters</strong>, which make your users happier (and also your boss).</p>
@@ -119,40 +127,90 @@
     <br>
 
     <h2>Follow a step by step guide with code sample on each step to implement Sign in with Apple, with <span class="green">Practical SIWA guide book</span></h2>
-    <br>
-    <p>Sign in with Apple flow is comprised of several steps:</p>
-    <br>
-    <p><strong>Prerequisite steps :</strong></p>
-    <ol>
-      <li>Backend Generate a RSA public key file from Apple public key API /auth/keys and store it in the backend</li>
-      <li>Download AuthKey (private key) generated from Apple developer portal for Sign In With Apple</li>
-      <li>Backend generate use the AuthKey to generate a JWT which will be used as “client_secret” parameter during token validation</li>
-    </ol>
-    <br>
-    <p><strong>SIWA steps for mobile app :</strong></p>
-    <ol>
-      <li>Getting authorization code (as string) from iOS app ASAuthorizationController, and send this to the backend</li>
-      <li>The backend server send this authorization code to Apple’s server endpoint /auth/token, upon success validation, will return access_token, refresh_token and id token</li>
-      <li>Decode the id token JWT to extract user data such as the unique identifier, email and name (if user opt in to reveal these data)</li>
-      <li>Use the unique identifier / email / name info to create a user, or if an user already exist, attach the unique identifier to it</li>
-      <li>Optionally, generate your own set of access_token / refresh_token on the backend and send it back to mobile app client, as Apple throttle token refresh to once per day per user, and the access token retrieved earlier is only valid for a short period of time.</li>
-      <li>The mobile client use the backend generated access_token for subsequent API calls to backend</li>
-      <li>User sign out or revoke SIWA permission from the Settings app, your app detect this and log user out</li>
-    </ol>
-    <br>
-    <p><strong>SIWA steps for website :</strong></p>
-    <ol>
-      <li>Redirect user to Apple OAuth page, user login with their Apple ID there</li>
-      <li>Apple will then send back a POST request with the user data to your server (redirect_uri)</li>
-    </ol>
-    <br><Br>
-    <p>The <strong class="green">Practical SIWA guide book</strong> will explain each of these steps with accompanying code sample (iOS in Swift, backend in Ruby/Sinatra). The client_secret JWT generation part will have <strong>sample code using PHP, Python, Ruby and Javascript.</strong></p>
     <br><br>
+    <img srcset="
+        bookcover.png 1x, 
+        bookcover@2x.png 2x
+      " alt="book cover" style="box-shadow: none;">
+    <br><br>
+    <p>The book will show the overall flow of Sign in with Apple, and explain each of steps from retrieving authorizationCode from iOS app, to generating client secret, to overview of your own access token generation strategies. All of the backend steps involved with Sign in with Apple comes with sample code in <strong>Ruby, PHP, Python and NodeJS</strong>. This book is concisely written to <strong>help you finish implement the whole Sign in with Apple flow as soon as possible</strong>.</p>
+    <br>
+    <br>
+    <h3>What's in the book?</h3>
 
-    <h2>Get notified when the book is complete and get <span class="green">early bird discounts!</span></h2>
+    <span style="font-size: 0.85em;">Annotation: 📝 = this chapter comes with sample code in Ruby, PHP, Python and NodeJS.</span>
+    <br><br>
+    <span>Here's the table of contents of the book :</span>
+    <br><br>
+    <ol>
+      <li>Big picture of the Sign in with Apple flow</li>
+      <li>What is JSON Web Token (JWT), how to decode and debug them, and libraries recommendation (📝)</li>
+      <li>Sign in with Apple implementation on iOS side, how to retrieve user data and check if user has logged in / out</li>
+      <li>How to retrieve Apple's public keys, and use it to verify the identityToken and decode it (📝)</li>
+      <li>How to validate the authorizationCode retrieved from iOS app (📝)</li>
+      <li>How to use private key to generate client secret, and use this client secret to exchange access token by calling Apple's endpoint (📝) </li>
+      <li>How to refresh access token using Apple's endpoint (📝)</li>
+      <li>Overview of strategies you can use to generate your own access token for authentication between your app to your server API</li>
+      <li>How to implement Sign in with Apple on your web app frontend</li>
+      <li>How to implement Sign in with Apple on other platforms</li>
+      <li>How to send email to private relay email (user who choose to hide their real email address will get a randomly generated email address from Apple)</li>
+    </ol>
+  
+    <br><br>
+    <h2 id="package">The Book + Demo App and Backend code</h2>
     <br>
-    <p>The book is still in progress, sign up to get notified when it is finished and get early bird discounts!</p>
+    <ul>
+      <li>The book in PDF format, 180 pages</li>
+      <li>You can finish the book and implement Sign in with Apple flow within a day</li>
+      <li>Code examples for each of the steps (In Ruby, PHP, Python, NodeJs), you can copy paste them and just change the variables as needed</li>
+      <li>Functional demo iOS app code (Swift 5, Xcode 11.3) with accompanying backend code written in Ruby, which you can study and deploy the backend code to <a href="https://heroku.com">Heroku</a> directly, and run the iOS app. </li>
+      <li>Demo includes the full Sign in with Apple flow, your server's own email/password login mechanism, and your server generate its own access token for communication between the app with your server API.</li>
+    </ul>
+    <br><br>
+    <div style="text-align: center;">
+      <div class="embed-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/OTaivckQR0A?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </div>
+    </div>
+    <br><br>
+    <div style="text-align: center;">
+      <a class="cta" href="https://gum.co/psiwa?variant=yes" target="_blank">Get the book + demo for $49</a>
+    </div>
+    <br><br><br><br>
+    <h2 id="book">Just the Book</h2>
     <br>
+    <ul>
+      <li>The book in PDF format, 180 pages</li>
+      <li>You can finish the book and implement Sign in with Apple flow within a day</li>
+      <li>Code examples for each of the steps (In Ruby, PHP, Python, NodeJs), you can copy paste them and just change the variables as needed</li>
+      <li><s>Functional demo iOS app code (Swift 5, Xcode 11.3) with accompanying backend code written in Ruby, which you can study and deploy the backend code to Heroku directly, and run the iOS app. </s></li>
+      <li><s>Demo includes the full Sign in with Apple flow, your server's own email/password login mechanism, and your server generate its own access token for communication between the app with your server API.</s></li>
+    </ul>
+    <br><br>
+    <div style="text-align: center;">
+      <a class="cta" href="https://gum.co/psiwa" target="_blank">Get the book for $29</a>
+    </div>
+    <br><br><br><br>
+    <h2 id="code">Just the Demo App and Backend code</h2>
+    <br>
+    <ul>
+      <li><s>The book in PDF format, 180 pages</s></li>
+      <li><s>You can finish the book and implement Sign in with Apple flow within a day</s></li>
+      <li><s>Code examples for each of the steps (In Ruby, PHP, Python, NodeJs), you can copy paste them and just change the variables as needed</s></li>
+      <li>Functional demo iOS app code (Swift 5, Xcode 11.3) with accompanying backend code written in Ruby, which you can study and deploy the backend code to Heroku directly, and run the iOS app.</li>
+      <li>Demo includes the full Sign in with Apple flow, your server's own email/password login mechanism, and your server generate its own access token for communication between the app with your server API.</li>
+    </ul>
+    <br><br>
+    <div style="text-align: center;">
+      <div class="embed-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/OTaivckQR0A?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </div>
+    </div>
+    <br><br>
+    <div style="text-align: center;">
+      <a class="cta" href="https://gum.co/psiwacode" target="_blank">Get the demo code for $29</a>
+    </div>
+    <br><br><br>
     <span id="waitinglist"></span>
     <script async data-uid="f542a5081a" src="https://fluffy-es.ck.page/f542a5081a/index.js"></script>
 
@@ -161,12 +219,16 @@
     <br><br>
     <h2>About the Author</h2>
     <br>
-    <img src="author.jpg" style="border-radius: 50px; max-width: 100px;">
+    <img src="author.png" style="border-radius: 50px; max-width: 100px;">
     <br><br>
     <p>Hi, I'm Axel Kee. I’ve been developing iOS apps for companies, clients and myself — from small indie app (they cover my daily coffee money ☕️) to social app that get hundreds of thousands of downloads — since 2016. </p>
     <br>
     <p>I have been writing about <a href="https://fluffy.es">iOS development stuff at my blog</a> since 2018 as well.</p>
   </div>
+
+  <!-- Gumroad -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <script src="https://assets.gumroad.com/assets/gumroad-overlay-ae4c986d063996b850a594099261362ed5933ef0ed1eacc386d510ec340c34c9.js"></script>
   <!-- Fathom - simple website analytics - https://usefathom.com -->
   <script>
   (function(f, a, t, h, o, m){
