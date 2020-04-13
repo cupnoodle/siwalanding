@@ -225,3 +225,13 @@ code {
   /*background: linear-gradient(to bottom, #597313 0%,#3c5e0a 100%);*/
   border: 4px solid #59bc4a;
 }
+
+@media screen and (max-width: 500px) {
+  .cta{
+    display: block;
+    margin-bottom: 0.75rem;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
