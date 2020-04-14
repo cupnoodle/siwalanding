@@ -56,11 +56,13 @@
     <h2>“I have wasted so much time trying to solve the error, the error message isn't even helpful!”</h2>
     <br>
     <p>
-      You have followed a tutorial on how to implement Sign in with Apple step by step, but you are stuck at the dreaded “invalid_client” error every time you try to validate the authorization code with /auth/token.
+      You have followed a tutorial on how to implement Sign in with Apple step by step, but you are stuck at the dreaded “invalid_client” or "invalid_grant" error every time you try to validate the authorization code with /auth/token.
+      <br><br>
+      Alright, I know it tells me the client is invalid... <strong>then what should I do to fix this?!</strong>
       <br><br>
       You checked your client_id, client_secret and even the redirect_uri parameters, all of them seem correct, then you try to swap client_id with the app bundle ID, web services ID, changing the headers used to generate the client secret JWT… hours has passed and despite all the trial and error, you are still getting the same “invalid_client” error! 🤬
       <br><br>
-      The error message “invalid_client” isn’t particularly helpful as <strong>it doesn’t say which part of your code is wrong</strong>, could it be your client_id? client_secret? or could it be the authorization code that you’ve gotten from the app isn’t formatted properly? You wished Apple would provide a more helpful error message on solving the issue.
+      The error message “invalid_client” isn’t particularly helpful as <strong>it doesn’t say which part of your code is wrong</strong>, could it be your client_id? client_secret? or could it be the authorization code that you’ve gotten from the app isn’t formatted properly? <strong>You wished Apple would provide a more helpful error message on solving the issue</strong>.
     </p>
     <br>
     <br>
