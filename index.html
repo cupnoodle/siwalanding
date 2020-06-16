@@ -168,11 +168,6 @@
   
     <br><br>
 
-    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sign in with Apple should be the new default in your apps. Here’s a decent book with sample codes on how to implement it on your server and the app ✌️ <a href="https://t.co/McAe11gRzi">https://t.co/McAe11gRzi</a></p>&mdash; Bobby Bobak @ Filtru ☕️ (@bobek_balinek) <a href="https://twitter.com/bobek_balinek/status/1252936848193830912?ref_src=twsrc%5Etfw">April 22, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-    <br><br>
-    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I got Practical Sign in with Apple from <a href="https://twitter.com/soulchildpls?ref_src=twsrc%5Etfw">@soulchildpls</a> on <a href="https://twitter.com/gumroad?ref_src=twsrc%5Etfw">@Gumroad</a>: <a href="https://t.co/8qoTyEtJtL">https://t.co/8qoTyEtJtL</a></p>&mdash; Genes (@onurgenes) <a href="https://twitter.com/onurgenes/status/1248618097138733056?ref_src=twsrc%5Etfw">April 10, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <br><br>
     <h2 id="package">The Book + Demo App and Backend code</h2>
     <br>
     <div style="text-align: center;">
@@ -194,7 +189,11 @@
     </div>
     <br><br>
     <div style="text-align: center;">
-      <a class="cta" href="https://gum.co/psiwa?variant=yes" target="_blank">Get the book + demo for $39</a>
+      <a class="cta" href="https://gum.co/psiwa/wwdc2020?variant=yes" target="_blank">Get the book + demo for <s>$45</s> $31</a>
+      <br>
+      <br>
+      <br>
+      <span id="countdown1" style="font-weight: 300;"></span>
       <br>
     </div>
     <br><br><br><br>
@@ -212,7 +211,11 @@
     </ul>
     <br><br>
     <div style="text-align: center;">
-      <a class="cta" href="https://gum.co/psiwa" target="_blank">Get the book for $19</a>
+      <a class="cta" href="https://gum.co/psiwa/wwdc2020" target="_blank">Get the book for <s>$25</s> $17</a>
+      <br>
+      <br>
+      <br>
+      <span id="countdown2" style="font-weight: 300;"></span>
       <br>
     </div>
     <br><br><br><br>
@@ -250,11 +253,16 @@
     </div>
     <br><br>
     <h3>Guarantee</h3>
-    <p>If using this book does not help you learn and implement Sign in with Apple, let me know, within 30 Days of the date of your purchase, and I'll give you a complete refund. No argument. No risk. 100% guaranteed. You can contact me at axel@fluffy.es 
+    <p>The reason I wrote this book is to help you to implement Sign in with Apple as soon as possible. If using this book does not help you learn and implement Sign in with Apple, let me know, within 30 Days of the date of your purchase, and I'll give you a complete refund. No argument. No risk. 100% guaranteed. You can contact me at axel@fluffy.es 
     <br><br>
     Have any questions? Contact me at axel@fluffy.es, I'll be happy to answer. </p>
 
     <br>
+    <br><br>
+    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sign in with Apple should be the new default in your apps. Here’s a decent book with sample codes on how to implement it on your server and the app ✌️ <a href="https://t.co/McAe11gRzi">https://t.co/McAe11gRzi</a></p>&mdash; Bobby Bobak @ Filtru ☕️ (@bobek_balinek) <a href="https://twitter.com/bobek_balinek/status/1252936848193830912?ref_src=twsrc%5Etfw">April 22, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <br><br>
+    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I got Practical Sign in with Apple from <a href="https://twitter.com/soulchildpls?ref_src=twsrc%5Etfw">@soulchildpls</a> on <a href="https://twitter.com/gumroad?ref_src=twsrc%5Etfw">@Gumroad</a>: <a href="https://t.co/8qoTyEtJtL">https://t.co/8qoTyEtJtL</a></p>&mdash; Genes (@onurgenes) <a href="https://twitter.com/onurgenes/status/1248618097138733056?ref_src=twsrc%5Etfw">April 10, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <br><br>
     <h2>About the Author</h2>
     <br>
@@ -264,6 +272,43 @@
     <br>
     <p>I have been writing about <a href="https://fluffy.es">iOS development stuff at my blog</a> since 2018 as well.</p>
   </div>
+
+  <script>
+  // Set the date we're counting down to
+  var countDownDate = new Date("June 30, 2020 23:59:30 GMT+08:00").getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    var discountText = "30% WWDC sale discount expiring in " + days + " days " + hours + " hours "
+    + minutes + " minutes "; 
+    // + seconds + "s ";
+
+    document.getElementById("countdown1").innerHTML = discountText;
+    document.getElementById("countdown2").innerHTML = discountText;
+    
+    // If the count down is finished, write some text 
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown1").innerHTML = "Discount expired 😢";
+      document.getElementById("countdown2").innerHTML = "Discount expired 😢";
+
+    }
+  }, 1000);
+  </script>
 
   <!-- Gumroad -->
   <script src="https://gumroad.com/js/gumroad.js"></script>
