@@ -30,13 +30,21 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100px; background-color: #64B249; z-index: -1;"></div>
   <div class="container">
-<!--     <img style="max-width: 75%;" src="bookcover.png" srcset="bookcover@2x.png 2x" alt="Making Sense of Auto Layout Book">
-    <br>
-    <div style="text-align: center;">
-      <span style="font-size: 0.8em;">Want the book already? <a href="#package">Click here to see buying options</a>, or <a href="#sample">read a sample</a></span>
+    <div class="book-container">
+      <div class="book">
+        <img
+          alt="Practical Sign in With Apple - axel kee"
+          src="https://siwa.fluffy.es/book@2x.png"
+          />
+      </div>
     </div>
-    <br><br> -->
+    <br><br>
+    <div style="text-align: center;">
+      <span style="font-size: 0.9em;">Want the book already? <a href="#package">Buy Now</a>, or <a href="#sample">read a sample</a></span>
+    </div>
+    <br><br>
     <h1>“We've spent 3 days combing through Apple documentation just to still be lost, We don't want our app to get rejected”</h1>
     <br>
     <figure style="position: relative; max-width: 414px; margin-left: auto; margin-right: auto;">
@@ -67,6 +75,14 @@
     <br>
     <br>
 
+    <div class="testimonial">
+      <p>
+      "Much of the documentation for Sign in with Apple ignores the server-side implementation. After struggling for ages, I came across <span style="text-decoration: underline;">Practical Sign in with Apple</span> which <strong class="green">helped me implement Sign in with Apple in a matter of days</strong>. The best part is that the server-side code is in multiple languages! I would highly recommend this book if you've been struggling with Sign in with Apple - it's a bargain!"
+      </p>
+      <br><br>
+      <p><strong> - Nic Morris </strong></p>
+    </div>
+    <br><br><br>
     <h2>“I have scoured all the documentation at length and have still not gotten anywhere.”</h2>
     <br>
     <p>
@@ -105,7 +121,7 @@
     <br>
     <br>
 
-    <h2>Learn the workings of JWT (JSON Web Token) and JWK (JSON Web Key)</h2>
+<!--     <h2>Learn the workings of JWT (JSON Web Token) and JWK (JSON Web Key)</h2>
     <br>
     <p>
       Most of the frustration arise when implementing Sign in with Apple is because we haven’t deal with JSON Web Token before, and generating a JSON Web Token (JWT) for the <strong>client_secret</strong> can be a confusing step especially Apple is using a quirky algorithm named “RS256” elliptic curve.
@@ -114,9 +130,9 @@
     <p>
       IdentityToken retrieved from Apple’s API is also in JWT format, which contains an unique identifier for the user in the <strong>sub</strong> key :
     </p>
-    <br>
+    <br> -->
 <!-- please copy paste this from Jekyll output lol -->
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+<!-- <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
   </span><span class="nl">"iss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://appleid.apple.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es.fluffy.AppleLogin"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578850937</span><span class="p">,</span><span class="w">
@@ -132,6 +148,9 @@
     <br>
     <p>The value of <strong>sub</strong>, <em>001802.ba20d2adb5954ff0ace4972268a21303.1014</em> is the unique user ID (which correspond to an Apple ID) for your app.</p>
     <br>
+    <br> -->
+
+    
     <br>
 
     <h2>Follow a step by step guide with code sample on each step to implement Sign in with Apple, with <span class="green">Practical SIWA guide book</span></h2>
@@ -151,18 +170,18 @@
     <br>
     <h3>What's in the book?</h3>
 
-    <span style="font-size: 0.85em;">Annotation: 📝 = this chapter comes with sample code in Ruby, PHP, Python and NodeJS.</span>
+    <span style="font-size: 0.85em;">Annotation: 🔋 = this chapter comes with sample code in Ruby, PHP, Python and NodeJS.</span>
     <br><br>
     <span>Here's the table of contents of the book :</span>
     <br><br>
     <ol>
       <li>Big picture of the Sign in with Apple flow</li>
-      <li>What is JSON Web Token (JWT), how to decode and debug them, and libraries recommendation (📝)</li>
+      <li>What is JSON Web Token (JWT), how to decode and debug them, and libraries recommendation (🔋)</li>
       <li>Sign in with Apple implementation on iOS side, how to retrieve user data and check if user has logged in / out</li>
-      <li>How to retrieve Apple's public keys, and use it to verify the identityToken and decode it (📝)</li>
-      <li>How to validate the authorizationCode retrieved from iOS app (📝)</li>
-      <li>How to use private key to generate client secret, and use this client secret to exchange access token by calling Apple's endpoint (📝) </li>
-      <li>How to refresh access token using Apple's endpoint (📝)</li>
+      <li>How to retrieve Apple's public keys, and use it to verify the identityToken and decode it (🔋)</li>
+      <li>How to validate the authorizationCode retrieved from iOS app (🔋)</li>
+      <li>How to use private key to generate client secret, and use this client secret to exchange access token by calling Apple's endpoint (🔋) </li>
+      <li>How to refresh access token using Apple's endpoint (🔋)</li>
       <li>Overview of strategies you can use to generate your own access token for authentication between your app to your server API</li>
       <li>How to implement Sign in with Apple on your web app frontend</li>
       <li>How to implement Sign in with Apple on other platforms</li>
@@ -193,6 +212,10 @@
     <br><br>
     <div style="text-align: center;">
       <a class="cta" href="https://gum.co/psiwa?variant=yes" target="_blank">Get the book + demo for $45</a>
+      <br>
+      <br>
+      <br><br>
+      <span><i>You could save days of frustrating trial and error from Google / StackOverflow answers, by following the book steps-by-steps guide.</i></span>
       <br>
       <br>
     </div>
@@ -258,7 +281,14 @@
 
     <br>
     <br><br>
-
+    <div class="testimonial">
+      <p>
+      "Much of the documentation for Sign in with Apple ignores the server-side implementation. After struggling for ages, I came across <span style="text-decoration: underline;">Practical Sign in with Apple</span> which <strong class="green">helped me implement Sign in with Apple in a matter of days</strong>. The best part is that the server-side code is in multiple languages! I would highly recommend this book if you've been struggling with Sign in with Apple - it's a bargain!"
+      </p>
+      <br><br>
+      <p><strong> - Nic Morris </strong></p>
+    </div>
+    <br>
     <br><br>
     <h2>About the Author</h2>
     <br>
