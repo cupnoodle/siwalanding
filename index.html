@@ -28,18 +28,6 @@
 
 <link rel="stylesheet" href="https://use.typekit.net/ioi3rzq.css">
 <link rel="stylesheet" href="style.css">
-<style>
-  /* override parity bar css */
-  #paritybar .pb-bar {
-    justify-content: space-around !important;
-  }
-
-  @media only screen and (max-width: 600px) {
-    #paritybar .pb-bar {
-      width: auto !important;
-    }
-  }
-</style>
 </head>
 <body>
   <div style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 200px; background-color: #64B249; z-index: -1;"></div>
@@ -227,11 +215,10 @@
       <br>
       <br>
       <br>
-<!--       <br><br>
-      <span><i>You could save days of frustrating trial and error from Google / StackOverflow answers, by following the book steps-by-steps guide.</i></span> -->
-<!--       <span id="countdown1" style="font-weight: 300;"></span> -->
-      <br>
-      <br>
+      <div id="package-discount" style="display: none;">
+        <br><br>
+        <p>We support purchasing power parity! It seems like you are from <strong><span id="package-discount-country">country</span></strong>, you can use the discount code <strong id="package-discount-code">code</strong> during checkout to get <strong><span id="package-discount-percent">0</span>% off!</strong></p>
+      </div>
     </div>
     <br><br><br><br>
     <h2 id="book">Just the Book</h2>
@@ -250,12 +237,15 @@
     <div style="text-align: center;">
       <a class="cta" href="https://gum.co/psiwa" target="_blank">Get the book for $25</a>
       <br>
-      <br>
-      <br>
       <!-- <span id="countdown2" style="font-weight: 300;"></span> -->
       <br>
     </div>
-    <br><br><br><br>
+    <br><br>
+    <div id="package-book" style="display: none;">
+      <br>
+      <p>We support purchasing power parity! It seems like you are from <strong><span id="package-book-country">country</span></strong>, you can use the discount code <strong id="package-book-code">code</strong> during checkout to get <strong><span id="package-book-percent">0</span>% off!</strong></p>
+    </div>
+    <br><br><br>
     <h2 id="code">Just the Demo App and Backend code</h2>
     <div style="text-align: center;">
       <img src="codeonly.png" srcset="codeonly@2x.png 2x" alt="buy demo only">
@@ -354,8 +344,6 @@
   }, 1000);
   </script> -->
 
-  <!-- Purchase Parity Bar -->
-  <script src='https://cdn.paritybar.com/paritybar.js'></script>
 
   <!-- Gumroad -->
   <script src="https://gumroad.com/js/gumroad.js"></script>
@@ -375,5 +363,39 @@
   fathom('trackPageview');
   </script>
   <!-- / Fathom -->
+
+  <script type="text/javascript">
+  function loadXMLDoc() {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+             if (xmlhttp.status == 200) {
+                // document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                console.log('returned response');
+
+                var discountJSON = JSON.parse(xmlhttp.responseText);
+
+                if(discountJSON.hasOwnProperty('code')){
+                  document.getElementById("package-discount").style.display = "block";
+                  document.getElementById("package-discount-country").innerHTML = discountJSON.country;
+                  document.getElementById("package-discount-code").innerHTML = discountJSON.code;
+                  document.getElementById("package-discount-percent").innerHTML = discountJSON.percent;
+
+                  document.getElementById("package-book").style.display = "block";
+                  document.getElementById("package-book-country").innerHTML = discountJSON.country;
+                  document.getElementById("package-book-code").innerHTML = discountJSON.code;
+                  document.getElementById("package-book-percent").innerHTML = discountJSON.percent;
+                }
+             }
+          }
+      };
+
+      xmlhttp.open("GET", "https://sxe92w3cu0.execute-api.ap-southeast-1.amazonaws.com/prod", true);
+      xmlhttp.send();
+  }
+
+  loadXMLDoc();
+  </script>
 </body>
 </html>
