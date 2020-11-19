@@ -211,10 +211,14 @@
     </div>
     <br><br>
     <div style="text-align: center;">
-      <a class="cta" href="https://gum.co/psiwa?variant=yes" target="_blank">Get the book + demo for $45</a>
+      <a class="cta" href="https://gum.co/psiwa/blackfriday2020?variant=yes" target="_blank">Get the book + demo for <s>$45</s> $22.50</a>
       <br>
-      <br>
-      <br>
+      <!-- black friday -->
+        <br><br>
+        <span style="font-weight: bold;">Black Friday 50% off discount ending in</span><br>
+        <span id="countdown1"></span>
+      <!-- <br> -->
+      <!-- <br> -->
       <div id="package-discount" style="display: none;">
         <br><br>
         <p>We support purchasing power parity! It seems like you are from <strong><span id="package-discount-country">country</span></strong>, you can use the discount code <strong id="package-discount-code">code</strong> during checkout to get <strong><span id="package-discount-percent">0</span>% off!</strong></p>
@@ -235,12 +239,16 @@
     </ul>
     <br><br>
     <div style="text-align: center;">
-      <a class="cta" href="https://gum.co/psiwa" target="_blank">Get the book for $25</a>
+      <a class="cta" href="https://gum.co/psiwa/blackfriday2020" target="_blank">Get the book for <s>$25</s> $12.50</a>
       <br>
+      <!-- black friday -->
+        <br><br>
+        <span style="font-weight: bold;">Black Friday 50% off discount ending in</span><br>
+        <span id="countdown2"></span>
       <!-- <span id="countdown2" style="font-weight: 300;"></span> -->
       <br>
     </div>
-    <br><br>
+    <!-- <br><br> -->
     <div id="package-book" style="display: none;">
       <br>
       <p>We support purchasing power parity! It seems like you are from <strong><span id="package-book-country">country</span></strong>, you can use the discount code <strong id="package-book-code">code</strong> during checkout to get <strong><span id="package-book-percent">0</span>% off!</strong></p>
@@ -307,42 +315,37 @@
   </div>
 
 
-<!--   <script>
-  // Set the date we're counting down to
-  var countDownDate = new Date("August 15, 2020 23:59:30 GMT+08:00").getTime();
-
-  // Update the count down every 1 second
-  var x = setInterval(function() {
-
-    // Get todays date and time
-    var now = new Date().getTime();
-
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Display the result in the element with id="demo"
-    var discountText = "25% Summer sale discount expiring in " + days + " days " + hours + " hours "
-    + minutes + " minutes "; 
-    // + seconds + "s ";
-
-    document.getElementById("countdown1").innerHTML = discountText;
-    document.getElementById("countdown2").innerHTML = discountText;
-    
-    // If the count down is finished, write some text 
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("countdown1").innerHTML = "Discount expired 😢";
-      document.getElementById("countdown2").innerHTML = "Discount expired 😢";
-
-    }
-  }, 1000);
-  </script> -->
+  <script>
+// Set the date we're counting down to
+var countDownDate = new Date("November 30, 2020 23:59:30 GMT+08:00").getTime();
+// Update the count down every 1 second
+var x = setInterval(function() {
+  // Get todays date and time
+  var now = new Date().getTime();
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  // Display the result in the element with id="demo"
+  var discountText = days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds"; 
+  // + seconds + "s ";
+  document.getElementById("countdown1").innerHTML = discountText;
+  document.getElementById("countdown2").innerHTML = discountText;
+  document.getElementById("countdown3").innerHTML = discountText;
+  
+  // If the count down is finished, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    var endedText = "Discount expired 😢";
+    document.getElementById("countdown1").innerHTML = endedText;
+    document.getElementById("countdown2").innerHTML = endedText;
+    document.getElementById("countdown3").innerHTML = endedText;
+  }
+}, 1000);
+</script>
 
 
   <!-- Gumroad -->
@@ -395,7 +398,7 @@
       xmlhttp.send();
   }
 
-  loadXMLDoc();
+  // loadXMLDoc();
   </script>
 </body>
 </html>
